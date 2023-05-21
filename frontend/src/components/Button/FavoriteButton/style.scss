@@ -1,0 +1,60 @@
+@import "../../../sass/devices";
+
+.favorite{
+    --size: 40px;
+    --increase: 0px;
+
+    width: calc(var(--size) + var(--increase));
+    height: calc(var(--size) + var(--increase));
+    position: relative;
+    transition: 300ms;
+    z-index: 600;
+    
+    @include smarthphone{
+        --increase: 5px;
+
+        background: none!important;
+    }
+
+    &--added{
+        svg{
+            fill: var(--bs-prim-400);
+            stroke: none;
+        }
+    }
+
+    &--animate{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        animation: expand-favorite 1s ease-in-out;
+        animation-delay: calc(var(--delay) + 1ms);
+        animation-fill-mode: forwards;
+
+        svg{
+            fill: var(--bs-prim-400);
+            stroke: var(--bs-prim-400);
+        }
+    }
+
+    // &:hover,
+    &:hover:not(.favorite--added),
+    &--hover:not(.favorite--added){
+        svg{
+            stroke: var(--bs-prim-400);
+        }
+    }
+}
+
+
+@keyframes expand-favorite{
+    0%{
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(3);
+        opacity: 0;
+    }
+}

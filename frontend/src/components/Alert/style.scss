@@ -1,0 +1,29 @@
+.alert{
+    width: 500px;
+    transform-origin: right;
+    animation: expand-alert 500ms ease-in;
+
+    &__text{
+        opacity: 0;
+        animation: opacity 1s ease forwards;
+        animation-delay: 600ms;
+    }
+}
+
+@keyframes expand-alert{
+    0%{
+        transform: scaleX(0) scaleY(0.1);
+    }
+    70%{
+        transform: scaleX(1) scaleY(0.1);
+    }
+    90%{
+        transform: scaleX(1) scaleY(1);
+    }
+    95%{
+        transform: scaleX(1) scaleY(1.1);
+    }
+    100%{
+        transform: scaleX(1) scaleY(1);
+    }
+}

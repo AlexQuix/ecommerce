@@ -1,0 +1,30 @@
+@import "../../sass/devices";
+
+.navbar{
+    &__container{
+        position: fixed;
+        bottom: 0px;
+
+        @include smarthphone{
+            position: sticky;
+            bottom: initial;
+            top: 0px;
+        }
+    }
+}
+
+.nav-link{
+    transition: 500ms;
+    cursor: pointer;
+    
+    &:hover{
+        span{
+            color: var(--bs-prim-400)!important;
+        }
+    }
+
+    &__icon{
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -1,0 +1,35 @@
+.carousel-control{
+    &__auto{
+        .progress{
+            width: 100%;
+            height: 5px;
+            border-radius: 3px;
+            background: var(--bs-dark-100);
+            position: relative;
+    
+            &::before{
+                content: "";
+                width: 0%;
+                height: 100%;
+                background: var(--bs-dark-700);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                transition: var(--timing);
+            }
+    
+            &--active::before{
+                animation: expand-progress var(--timing) linear;
+            }
+        }
+    }
+}
+
+@keyframes expand-progress{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}

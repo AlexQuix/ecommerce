@@ -1,0 +1,87 @@
+@import "./var";
+@import "./animation";
+@import "./shadow";
+@import "./neumorphism";
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/functions";
+
+@function add-hover($util-key){
+    $util-value: map-get($utilities, $util-key);
+    $util-extended: map-merge($util-value, (
+        "state": hover
+    ));
+    @return $util-extended;
+}
+
+// 2. Include any default variable overrides here
+$theme-colors: map-merge($colors,  
+					map-merge( $color-secondary, 
+						map-merge($darks, $prims)));
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+$new-utils: map-remove($utilities, "shadow");
+$utilities: map-merge($new-utils, (
+    "background-color-hover": add-hover("background-color"),
+    "color-hover": add-hover("color"),
+    "border-color-hover": add-hover("border-color"),
+	"posiiton": map-merge(map-get($utilities, "position"), (
+		responsive: true
+	)),
+    "shadow": (
+		property: box-shadow,
+		class: shadow,
+		"state": hover,
+		values: (
+			"drop": $drop-shadow,
+			"sm-drop": $small-drop-shadow,
+			"drop-dark": $drop-dark-shadow,
+			"sm-drop-dark": $small-drop-dark-shadow,
+			"inner": $inner-shadow,
+			"sm-inner": $small-inner-shadow,
+		)
+    ),
+    "neu": (
+		responsive: true,
+		property: box-shadow,
+		class: neu,
+		"state": hover,
+		values: $neus
+    ),
+    "font-weight": (
+		responsive: true,
+		property: font-weight,
+		class: fw,
+		values: $font-weight
+    )
+));
+
+
+// 4. Include any optional Bootstrap components as you like
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/alert";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+
+@import "./reboot";
+@import "./scrollbar";
+@import "./style";

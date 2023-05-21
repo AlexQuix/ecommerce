@@ -1,0 +1,27 @@
+.spinner{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    
+    .circle{
+        width: 5px;
+        height: 5px;
+        display: block;
+        background-color: var(--bs-prim-500);
+        border-radius: 50%;
+        animation: spinner-effect 1s ease-in infinite alternate;
+        animation-delay: calc(var(--delay) * 300ms);
+    }
+}
+
+@keyframes spinner-effect{
+    0%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1.5);
+    }
+}

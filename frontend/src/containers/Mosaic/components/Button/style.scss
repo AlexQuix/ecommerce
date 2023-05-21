@@ -1,0 +1,17 @@
+.mosaic{
+    &__btn{
+        width: 35px;
+        transition: 500ms;
+
+        svg{
+            stroke: var(--bs-dark-300);
+            transition: 500ms;
+        }
+
+        &--active{
+            svg{
+                stroke: var(--bs-prim-500);
+            }
+        }
+    }
+}

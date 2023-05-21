@@ -1,0 +1,16 @@
+$bg: linear-gradient(90deg, rgb(248, 248, 248), rgb(235, 235, 235), rgb(248, 248, 248));
+
+.skeleton{
+    background: $bg;
+    background-size: 200%;
+    animation: skeleton-loader 1500ms ease-in-out infinite;
+}
+
+@keyframes skeleton-loader{
+    0%{
+        background-position: 0%;
+    }
+    100%{
+        background-position: 200%;
+    }
+}

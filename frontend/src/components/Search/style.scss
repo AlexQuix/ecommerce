@@ -1,0 +1,56 @@
+@import "../../sass/neumorphism";
+@import "../../sass/devices";
+
+.search{
+    &__wrapper{
+        width: 100%;
+        max-width: 700px;
+        box-shadow: $neu-dark-drop-1;
+        position: fixed;
+        z-index: 700;
+
+        @include smarthphone{
+            position: relative!important;
+            box-shadow: none;
+        }
+    }
+    &__icon{
+        width: 20px;
+        height: 20px;
+    }    
+    &__close{
+        width: 16px;
+        background: hsl(340, 66%, 95%);
+        box-sizing: content-box;
+    }
+    &__bg{
+        box-shadow: $neu-drop-1;
+        z-index: -1;
+        transition: 500ms;
+    }
+    &__btn{
+        border: 1px solid var(--bs-dark-200);
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+
+        @include smarthphone{
+            max-width: 150px;
+            border: none;
+            position: relative;
+        }
+    }
+
+    input:focus ~ &__bg{
+        box-shadow: $neu-inner-1;
+    }
+}
+
+@keyframes reduce{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,59 @@
+@import "../../../sass/devices";
+
+.link-category{
+        --gradient: var(--lg-1);
+        width: calc(var(--carousel-category-width) - 20px);
+        min-height: 100px;
+        margin: 0px 10px;
+        background: radial-gradient(farthest-corner at 0px 0px, var(--gradient));
+        transition: 500ms;
+
+        &::before{
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        &:hover{
+            &::before{
+                width: 100%;
+                height: 100%;
+            }
+
+            img{
+                transform: scale(1.1);
+            }
+        }
+
+        .wrapper-img{
+            max-width: 40%;
+            transition: 500ms;
+
+            img{
+                width: auto;
+                height: 100%;
+                transition: 500ms;
+                object-fit: contain;
+    
+                @include tablet{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        &__text{
+            width: 80%;
+
+            p{
+                font-family: Roboto Condensed;
+                line-height: 1.4rem;
+                transition: 500ms;
+            }
+        }
+}

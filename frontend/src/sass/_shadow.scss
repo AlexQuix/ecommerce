@@ -1,0 +1,25 @@
+// SHADOWS
+$shadow-blur: 15px;
+
+$drop-shadow: -8px -8px $shadow-blur hsl(0, 0%, 97%), // bottom
+                8px 8px $shadow-blur hsl(0, 0%, 90%); // top
+$small-drop-shadow: -5px -5px $shadow-blur hsl(0, 0%, 97%), 
+                5px 5px $shadow-blur hsl(0, 0%, 90%);
+
+$drop-dark-shadow: -8px -8px $shadow-blur rgba(0,0,0, .05), // top
+                8px 8px $shadow-blur rgba(0, 0, 0, .175); // bottom
+$small-drop-dark-shadow: -1px -1px 10px rgba(0,0,0, .03), // top
+                    1px 1px 10px rgba(0, 0, 0, .150); // bottom
+
+
+
+$inner-shadow: inset -8px -8px $shadow-blur hsl(0, 0%, 97%), 
+                inset 8px 8px $shadow-blur hsl(0, 0%, 90%);
+$small-inner-shadow:  inset 6px 6px 10px hsl(0, 0%, 94%),
+                        inset -4px -4px 10px hsl(0, 0%, 98%);
+
+
+
+$both-shadow: inset 6px 6px 10px hsl(0, 0%, 94%),
+                inset -4px -4px 10px hsl(0, 0%, 98%),
+                8px 8px $shadow-blur hsl(0, 0%, 90%);

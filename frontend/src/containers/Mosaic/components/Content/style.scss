@@ -1,0 +1,40 @@
+@import "../../../../sass/devices";
+
+.mosaic{
+    &__content{
+        --cols: 1;
+        --col-width: 100%;
+        --col-gap: 2rem;
+        --row-auto: auto;
+        --col-template: 1;
+        --row-gap: 1rem;
+
+        @include mobile{
+            --col-width: minmax(180px, 280px);
+        }
+        @include smarthphone{
+            --cols: 2;
+            --row-gap: 2rem;
+        }
+        @include tablet{
+            --cols: 3;
+        }
+        @include laptop{
+            --cols: 4;
+        }
+    }
+
+    &__grid{
+        display: grid;
+        column-gap: var(--col-gap);
+        row-gap: var(--row-gap);
+        justify-content: center;
+    }
+
+    &__col-template{
+        grid-template-columns: var(--col-template);
+    }
+    &__row-auto{
+        grid-auto-rows: var(--row-auto);
+    }
+}

@@ -1,0 +1,19 @@
+.popover{
+    animation: display-soft 100ms linear forwards;
+
+    &__wrapper{
+        animation: rebound-effect 300ms 100ms linear forwards;
+    }
+    &__content{
+        .scrollbar::-webkit-scrollbar{
+            width: 4px;
+        }
+        .scrollbar::-webkit-scrollbar-track{
+            width: 4px;
+            background: white;
+        }
+        .scrollbar::-webkit-scrollbar-thumb{
+            background: var(--bs-dark-200);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.quantity{
+    &__btn{
+        width: 35px;
+        height: 35px;
+        display: flex;
+        place-content: center;
+    }
+
+    &__text{
+        min-width: 30px;
+    }
+}

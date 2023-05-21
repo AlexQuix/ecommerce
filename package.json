@@ -1,0 +1,36 @@
+{
+  "name": "yamaha_re",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "api",
+    "frontend"
+  ],
+  "engines": {
+    "node": "18.12.1",
+    "npm": "8.19.2"
+  },
+  "scripts": {
+    "build:api": "npm run build --workspace=api",
+    "build:frontend": "npm run build --workspace=frontend",
+    "start:api": "npm start --workspace=api",
+    "start:frontend": "npm start --workspace=frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexQuix/ecommerce.git"
+  },
+  "dependencies": {
+    "typescript": "4.9.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexQuix/ecommerce/issues"
+  },
+  "homepage": "https://github.com/AlexQuix/ecommerce#readme"
+}

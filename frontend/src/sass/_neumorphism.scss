@@ -1,0 +1,43 @@
+// SHADOWS
+$shadow-blur: 15px;
+
+
+// drop neumorphism
+$neu-drop-1: -4px -4px 10px hsla(0, 0%, 0%, 0.01), 
+                4px 4px 10px hsla(0, 0%, 0%, 0.1);
+                
+$neu-drop-2: -8px -8px $shadow-blur hsl(0, 0%, 97%), // bottom
+                8px 8px $shadow-blur hsl(0, 0%, 90%); // top
+
+$neu-dark-drop-1: -4px -4px 10px rgba(0,0,0, .03), // top
+                4px 4px 10px rgba(0, 0, 0, .150); // bottom
+$neu-dark-drop-2: -8px -8px $shadow-blur rgba(0,0,0, .05), // top
+                8px 8px $shadow-blur rgba(0, 0, 0, .175); // bottom
+
+
+// inner neumorphism
+$neu-inner-1:  inset 4px 4px 10px hsl(0, 0%, 94%),
+                inset -4px -4px 10px hsl(0, 0%, 98%);
+$neu-inner-2: inset -8px -8px $shadow-blur hsl(0, 0%, 97%), 
+                inset 8px 8px $shadow-blur hsl(0, 0%, 90%);
+$neu-inner-dark-1: inset -8px -8px 12px hsla(0, 0%, 0%, 0.03), 
+                    inset 8px 8px 12px hsla(0, 0%, 0%, 0.1);
+
+
+
+$neu-both: inset 6px 6px 10px hsl(0, 0%, 94%),
+            inset -4px -4px 10px hsl(0, 0%, 98%),
+            8px 8px $shadow-blur hsl(0, 0%, 90%);
+
+
+// ---------- MAP
+$neus: (
+    "none": none,
+    "drop-1": $neu-drop-1,
+    "drop-2": $neu-drop-2,
+    "drop-dark-1": $neu-dark-drop-1,
+    "drop-dark-2": $neu-dark-drop-2,
+    "inner-1": $neu-inner-1,
+    "inner-2": $neu-inner-2,
+    "inner-dark-1": $neu-inner-dark-1
+);

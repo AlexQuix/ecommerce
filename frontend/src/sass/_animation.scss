@@ -1,0 +1,31 @@
+@keyframes display-soft {
+    0%{
+        opacity: 0
+    }
+    100%{
+        display: 1;
+    }
+}
+
+
+@keyframes rebound-effect{
+    0%{
+        transform: scale(0.99);
+    }
+    60%{
+        transform: scale(1.01);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

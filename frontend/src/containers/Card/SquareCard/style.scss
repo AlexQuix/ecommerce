@@ -1,0 +1,28 @@
+@import "../../../sass/devices";
+
+.card{
+    width: var(--width);
+    max-width: var(--max-width);
+    transition: 500ms;
+
+    &__bg{
+        width: 100%;
+        height: 100%;
+        transform: scale(1.03);
+        z-index: -1;
+
+        @include smarthphone{
+            height: 60%;
+        }
+    }
+
+    &__wrapper-img{
+        height: 150px;
+
+        img{
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+    }
+}

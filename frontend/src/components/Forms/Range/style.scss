@@ -1,0 +1,44 @@
+@mixin slider-thumb($size:10px){
+    appearance: none;
+    cursor: pointer;
+    width: $size;
+    height: $size;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background-color: var(--bs-prim-500);
+    box-shadow: -408px 0px 0px 400px hsl(240, var(--lightness), 68%);
+    box-sizing: content-box;
+}
+
+.range{
+    position: relative;
+
+    &::before{
+        content: "";
+        width: 100%;
+        height: 5px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    input[type="range"] {
+        appearance: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        background-color: var(--bs-dark-100);
+        outline: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+      
+    input[type="range"]::-webkit-slider-thumb {
+        @include slider-thumb;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        @include slider-thumb;
+    }
+}

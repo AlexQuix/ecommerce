@@ -1,0 +1,24 @@
+@import "../../../sass/neumorphism";
+
+.select{
+    &__icon{
+        width: 20px;
+        height: 20px;
+    }
+    &__dropdown{
+        z-index: 740;
+    }
+    &__option{
+        cursor: pointer;
+        p{
+            transition: 500ms;
+        }
+        
+        &:hover{
+            p{
+                transform: translateX(20px) scale(1.05);
+            }
+        }
+    }
+}
+

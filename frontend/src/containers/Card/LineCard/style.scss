@@ -1,0 +1,12 @@
+.card-line{
+    &__wrapper-img{
+        width: 80px;
+        height: 100%!important;
+
+        img{
+            width: auto;
+            height: 100%!important;
+            object-fit: contain;
+        }
+    }
+}

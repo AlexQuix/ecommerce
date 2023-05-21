@@ -1,0 +1,44 @@
+@import "../../../sass/neumorphism";
+
+.check{
+    width: var(--check-size);
+    height: var(--check-size);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--check-bg);
+    box-shadow: var(--check-shadow);
+    transition: 500ms;
+
+    &::before{
+        content: "";
+        width: 8px;
+        height: 14px;
+        border-right: 2px solid var(--check-color);
+        border-bottom: 2px solid var(--check-color);
+        transform: rotate(45deg) translate(-3px, -3px);
+        position: absolute;
+        transition: 500ms;
+    }
+
+    &__hidden{
+        display: none;
+    }
+    
+    &__hidden:checked ~ &{
+        background: var(--check-bg-active);
+        transform: scale(1.2);
+        box-shadow: none;
+    }
+    
+    &__hidden:checked ~ &::before{
+        border-right: 2px solid var(--check-color-active);
+        border-bottom: 2px solid var(--check-color-active);
+    }
+
+    &__hidden:checked ~ &__text{
+        color: var(--check-color-active)!important;
+    }
+}
+

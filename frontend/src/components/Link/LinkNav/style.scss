@@ -1,0 +1,16 @@
+@import "../../../sass/devices";
+
+.nav-item{
+    transition: 500ms;
+    
+    &:hover{
+        span{
+            color: var(--bs-prim-400)!important;
+        }
+    }
+
+    &__icon{
+        width: 20px;
+        height: 20px;
+    }
+}
