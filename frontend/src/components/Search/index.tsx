@@ -36,7 +36,7 @@ export default function Search(){
                 navigate("/")
             }
         });
-    }, []);
+    }, [navigate, events]);
 
     function handleSubmit({search}:ISearchForm) {
         search = search.trim();

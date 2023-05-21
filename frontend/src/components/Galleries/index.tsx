@@ -16,7 +16,8 @@ export default function Galleries({main, collection}:Props){
         <div className="galleries__container row gap-3 justify-content-center">
             <div className="col-12 col-sm-8 col-md-12 rounded-3">
                 <div className="galleries__main w-100 h-100 px-0 px-md-4">
-                    <img src={main ? "/assets/img/"+main : "/img/preview-motocycle.jpg"}/>
+                    <img src={main ? "/assets/img/"+main : "/img/preview-motocycle.jpg"}
+                        alt="product"/>
                 </div>
             </div>
             { collection.length > 0 
@@ -27,7 +28,8 @@ export default function Galleries({main, collection}:Props){
                                 <div key={i} 
                                     className="col-4 col-sm-12 col-md-4 px-2">
                                     <div className="galleries__item h-100 p-3 d-flex align-items-center neu-drop-dark-1 rounded-4">
-                                        <img src={"/assets/img/"+i}/>
+                                        <img src={"/assets/img/"+i}
+                                            alt="product"/>
                                     </div>
                                 </div>
                             ))}

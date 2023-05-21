@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDevice } from "../../../hooks";
 import { IState } from "../../../store";
@@ -17,30 +17,30 @@ export default function LinkPopover({Link, posx, posy, PopoverContent}:Props){
     const dispatch = useDispatch();
     const device = useDevice();
     const linkRef = useRef({} as HTMLDivElement);
-    const {closeAll} = useSelector((state:IState)=>state.linkPopover);
+    const { closeAll } = useSelector((state:IState)=>state.linkPopover);
 
     let [pointerX, setPointerX] = useState(0);
     let [isLinkHover, setIsLinkHover] = useState(false);
     let [isPopoverHover, setIsPopoverHover] = useState(false);
 
-    function closePopover(){
+    const closePopover = useCallback(()=>{
         if(closeAll){
             setIsLinkHover(false);
             setIsPopoverHover(false);
             dispatch(linkPopover.actions.setCloseAll(false));
         }
-    }
+    }, [closeAll, dispatch]);
 
     useEffect(()=>{
         closePopover();
-    }, [closeAll]);
+    }, [closeAll, closePopover]);
 
     useEffect(()=>{
         if(linkRef.current){
             let rect = linkRef.current.getBoundingClientRect();
             setPointerX( rect.width / 2 - posx);
         }
-    }, [linkRef]);
+    }, [linkRef, posx]);
 
     return (
         <div className="position-relative d-flex flex-column align-items-center" >

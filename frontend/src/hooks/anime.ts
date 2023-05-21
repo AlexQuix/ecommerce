@@ -1,4 +1,4 @@
-import {MutableRefObject, useRef, useEffect, useState} from "react";
+import { MutableRefObject, useRef, useEffect, useState, useCallback} from "react";
 import anime, {EasingOptions, AnimeParams} from "animejs";
 import { useDispatch } from "react-redux";
 import { loadPageActions } from "../store/slices/loadPage";
@@ -93,7 +93,7 @@ export function useAnime(
     // animeDirection, animeExec) change. It starts the animeConfig object which 
     // contains the necessary configuration for the anime.js library.
     useEffect(()=>{
-        let { pause, initialMode, reverseMode } = animeState;
+        let { pause } = animeState;
         // If the target is not available, the animation is paused or the animation is 
         // currently executing, return early.
         if(!target || pause || animeExec || !animeDirection) return;
@@ -168,30 +168,36 @@ export function useAnime(
         }
 
         anime(animeConfig); 
-    }, [target, events, animeDirection, animeExec]);
+    }, [target, events, animeDirection, animeExec, animeState, config, style]);
+
+    const animeEvents = useCallback((eventState:IAnimeEvent)=>{
+        setEvents(eventState);
+    }, []);
+
+    const playAnime = useCallback((direction: "normal" | "reverse")=>{
+        if(animeState.play) return;
+        
+        // check if direction is different from current animeDirection
+        if(direction !== animeDirection){
+            setAnimeDirection(direction);
+            setAnimeState((prev)=>({
+                ...prev,
+                play: true,
+                pause: false
+            }));
+        }
+    }, [animeDirection, animeState.play]);
+
+    const changeDirection = useCallback((value: "normal" | "reverse")=>{
+        setAnimeDirection(value);
+    }, [])
 
     return {
         ...animeState,
         direction: animeDirection!,
-        setDirection(value){
-            setAnimeDirection(value);
-        },
-        playAnime(direction){
-            if(animeState.play) return;
-            
-            // check if direction is different from current animeDirection
-            if(direction !== animeDirection){
-                setAnimeDirection(direction);
-                setAnimeState((prev)=>({
-                    ...prev,
-                    play: true,
-                    pause: false
-                }));
-            }
-        },
-        events(eventState){
-            setEvents(eventState);
-        }
+        setDirection: changeDirection,
+        playAnime,
+        events: animeEvents
     }
 }
 
@@ -206,14 +212,6 @@ export function useAnimeTimeline(
         delay: 0
     }
 ):IAnimeTimelineHook{
-    // let [play, setPlay] = useState(false);
-    
-    // let [begin, setBegin] = useState(false);
-    // let [completed, setCompleted] = useState(true);
-
-    // let [initialMode, setInitialMode] = useState(true);
-    // let [reverseMode, setReverseMode] = useState(false);
-
     let [animeDirection, setAnimeDirection] = useState<"normal"|"reverse">();
     let [animeExec, setAnimeExec] = useState(false);
     let [animeState, setAnimeState] = useState<IAnimeState>({
@@ -229,7 +227,7 @@ export function useAnimeTimeline(
     
 
     useEffect(()=>{
-        let { pause, initialMode, reverseMode } = animeState;
+        let { pause } = animeState;
         // if the animation is paused or the animation is 
         // currently executing, return early.
         if(pause || animeExec) return;
@@ -306,51 +304,59 @@ export function useAnimeTimeline(
             tl.add({targets: e, ...style}, timelineOffset));
         tl.play();
 
-    }, [animeState, animeExec, animeDirection, events]);
+    }, [animeState, animeExec, animeDirection, events, config]);
+
+    const playAnime = useCallback((direction:"normal"|"reverse")=>{
+        // check if direction is different from current animeDirection
+        if(direction !== animeDirection){
+            setAnimeDirection(direction);
+            setAnimeState((prev)=>({
+                ...prev,
+                play: true,
+                pause: false
+            }));
+        }
+    }, [animeDirection]);
+
+    const addAnime = useCallback((element:AnimeTarget, style: IStyle, timelineOffset:number | string)=>{
+        // If the element is an array, we add the entire array to the animations
+        if(element instanceof Array){
+            return animations.current.push({e: element, style, timelineOffset});
+        }
+
+        // If the element doesn't have an id, we throw an error
+        if(!element.id) 
+            throw new Error("You must to provide an id for the element");
+        
+        // Otherwise, we check if the element already exists in the animations array
+        let someElement = animations.current.some(({e})=>{
+            // If we find an array element, we return false to indicate that we haven't found a match
+            if(e instanceof Array) return false;
+
+            // Otherwise, we check if the ids match
+            return e.id === element.id
+        });
+
+        // If the element doesn't exist in the animations array, we add it
+        if(!someElement) animations.current.push({e: element, style, timelineOffset});
+    }, []);
+
+    const animeEvents = useCallback((eventState: IAnimeEvent)=>{
+        setEvents(eventState);
+    }, []);
+
+    const changeDirection = useCallback((newDirection:"normal" | "reverse")=>{
+        setAnimeDirection(newDirection);
+    }, [])
 
     return {
         ...animeState,
         direction: animeDirection!,
-        setDirection(value){
-            setAnimeDirection(value);
-        },
+        setDirection: changeDirection,
         // This function adds an animation to the current animations array
-        addAnimation(element:AnimeTarget, style: IStyle, timelineOffset:number | string){
-            // If the element is an array, we add the entire array to the animations
-            if(element instanceof Array){
-                return animations.current.push({e: element, style, timelineOffset});
-            }
-
-            // If the element doesn't have an id, we throw an error
-            if(!element.id) 
-                throw new Error("You must to provide an id for the element");
-            
-            // Otherwise, we check if the element already exists in the animations array
-            let someElement = animations.current.some(({e})=>{
-                // If we find an array element, we return false to indicate that we haven't found a match
-                if(e instanceof Array) return false;
-
-                // Otherwise, we check if the ids match
-                return e.id === element.id
-            });
-
-            // If the element doesn't exist in the animations array, we add it
-            if(!someElement) animations.current.push({e: element, style, timelineOffset});
-        },
-        playAnime(direction){
-            // check if direction is different from current animeDirection
-            if(direction !== animeDirection){
-                setAnimeDirection(direction);
-                setAnimeState((prev)=>({
-                    ...prev,
-                    play: true,
-                    pause: false
-                }));
-            }
-        },
-        events(eventState){
-            setEvents(eventState);
-        }
+        addAnimation: addAnime,
+        playAnime,
+        events: animeEvents
     }
 }
 
@@ -358,7 +364,7 @@ export function useAnimePage(pageRef:MutableRefObject<HTMLDivElement>, load:bool
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(loadPageActions.setLoad(true));
-    }, [])
+    }, [ dispatch ])
 
     useEffect(()=>{
         if(!pageRef.current) return;
@@ -379,5 +385,5 @@ export function useAnimePage(pageRef:MutableRefObject<HTMLDivElement>, load:bool
             duration,
             easing: "linear"
         });
-    }, [pageRef, load])
+    }, [pageRef, load, duration])
 }

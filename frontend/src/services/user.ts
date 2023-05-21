@@ -1,7 +1,5 @@
 import { IResult } from "../types/models";
 
-const base = "http://localhost:4000/api/v1";
-
 export interface IUser{
     _id: string;
     username: string,
@@ -10,7 +8,7 @@ export interface IUser{
 
 class UserService{
     async changeUsername(token:string, newUsername:string):Promise<IResult<any>>{
-        const res = await fetch(base + "/users/username", {
+        const res = await fetch("/api/v1/users/username", {
             method: "PATCH",
             headers: {
                 "Content-Type": 'application/json',
@@ -23,4 +21,5 @@ class UserService{
     }
 }
 
-export default new UserService();
+const userService = new UserService();
+export default userService;

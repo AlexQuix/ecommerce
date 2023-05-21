@@ -17,4 +17,5 @@ class CategoryServices{
     }
 }
 
-export default new CategoryServices();
+const categoryService = new CategoryServices();
+export default categoryService;

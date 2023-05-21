@@ -16,7 +16,7 @@ export default function Path({ d, style} : Props){
             addPath(pathRef.current);
             isAdded.current = true;
         }
-    }, [pathRef])
+    }, [pathRef, addPath])
 
     return (<>
         <path d={d} style={style} ref={pathRef}/>

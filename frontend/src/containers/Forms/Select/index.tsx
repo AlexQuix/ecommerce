@@ -38,7 +38,7 @@ export default function Select({ value, options, handleSelected }:Props){
                 },
             });
         }
-    }, [iconRef, dropdownRef])
+    }, [iconRef, dropdownRef, addAnimation, events])
     
     return (
         <div className="select d-block position-relative">

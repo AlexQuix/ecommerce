@@ -46,7 +46,7 @@ export default function CarouselResize({data, CSSCardWidth, CSSCardGap, CSSCardS
         return ()=>{
             window.removeEventListener("resize", main);
         }
-    }, []);
+    }, [ CSSCardWidth, CSSCardGap, CSSCardShown, autoCardWidth, CssVarOrigin ]);
 
     return (
         <div className="w-100 d-block" 

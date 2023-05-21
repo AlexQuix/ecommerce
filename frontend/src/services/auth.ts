@@ -12,11 +12,9 @@ export interface ISignUpClient{
     confirm_password: string;
 }
 
-const base = "http://localhost:4000/api/v1";
-
 class AuthService {
     async login(user:ILoginBody):Promise<IResult<string>> {
-        let res = await fetch(base + '/auth/login', {
+        let res = await fetch('/api/v1/auth/login', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -32,7 +30,7 @@ class AuthService {
     }
   
     async signUp(client: ISignUpClient):Promise<IResult<string>> {
-        const res = await fetch(base + '/auth/client/signin', {
+        const res = await fetch('/api/v1/auth/client/signin', {
             method: 'POST',
             body: JSON.stringify(client),
             headers: {
@@ -49,4 +47,5 @@ class AuthService {
     }
 }
 
-export default new AuthService();
+const authService = new AuthService();
+export default authService;

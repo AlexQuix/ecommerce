@@ -23,7 +23,7 @@ export default function PageContainer({children, showNavbar, className, style, d
     
     useEffect(()=>{
         dispatch(navbarActions.setShow(showNavbar));
-    }, [showNavbar])
+    }, [showNavbar, dispatch])
 
     return (
         <div className={`${defSyle?"page container-fluid py-3 mb-4 pb-5 pb-sm-0":""} ${className}`}

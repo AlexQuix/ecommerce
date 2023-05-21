@@ -17,9 +17,13 @@ export default function Page(){
     const user = useRetrieveResult();
     let { closeAlert } = useAlert();
 
+    function hideMessageError(){
+        if(isSomethingWasWrong)
+            setIsSomethingWasWrong(false);
+    }
+
     function showMessageError(){
         if(isSomethingWasWrong) return;
-
         setIsSomethingWasWrong(true);
     }
 
@@ -42,10 +46,12 @@ export default function Page(){
                         </div>
                     )}>
                 {({result})=>{
-                    if(result)
+                    if(result){
+                        hideMessageError();
                         return <CategoryCarousel />;
+                    }
 
-                    // showMessageError();
+                    showMessageError();
                     return <></>;
                 }}
             </Loader>
@@ -60,10 +66,12 @@ export default function Page(){
                             </Skeleton>            
                         )}>
                 {({result})=>{
-                    if(result)
+                    if(result){
+                        hideMessageError();
                         return <ProductSection title="Motocycles" user={user as any}/>;
+                    }
 
-                    // showMessageError();
+                    showMessageError();
                     return <></>;
                 }}
                 </Loader>

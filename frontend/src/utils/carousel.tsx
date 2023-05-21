@@ -1,4 +1,3 @@
-import { retrieveCSSVariable } from ".";
 import { ICarouselInfo } from "../containers/Carousel";
 
 export function posxToRight(carouselInfo:ICarouselInfo, posx:number, slideWidth:number):number{

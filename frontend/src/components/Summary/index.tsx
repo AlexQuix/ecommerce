@@ -3,9 +3,6 @@ import { useRef, useState } from "react";
 import { minDevice } from "../../utils";
 import { DEVICE_WIDTH, currentDevice, useResize } from "../../hooks";
 
-import PillButton from "../../containers/Button/PillButton";
-import PillButtonPrimary from "../Button/PillButtonPrimary";
-
 type Props = {
     totalPrice: number;
     savedMoney: number;

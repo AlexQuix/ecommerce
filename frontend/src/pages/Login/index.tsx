@@ -45,7 +45,7 @@ export default function Login(){
                 navigate("/signin");
             }
         })
-    }, []);
+    }, [playAnime, events, navigate]);
 
     async function retrieveUser(){
         let res = await ClientService.details();

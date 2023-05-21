@@ -37,7 +37,7 @@ export function usePopover(device:Device, isHover:boolean, payload:Payload, acti
         return ()=>{
             clearTimeout(id);
         }
-    }, [isHover, payload, device]);
+    }, [isHover, payload, device, dispath, actions]);
 }
 
 export function usePointerStyle(popoverRef:MutableRefObject<HTMLDivElement>, pointer:PointerConfig){
@@ -60,7 +60,7 @@ export function usePointerStyle(popoverRef:MutableRefObject<HTMLDivElement>, poi
                 setPointerStyle(style);
             }
         }, 50);
-    }, []);
+    }, [pointer, popoverRef]);
     
     // returns the pointer style state variable
     return pointerStyle;

@@ -33,7 +33,7 @@ export default function DrawLine({animeConfig, play, children}:Props){
                 autoplay: true
             })
         }
-    }, [play])
+    }, [play, animeConfig, paths])
 
     return (
         <DrawLineContext.Provider value={{

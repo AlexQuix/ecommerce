@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IState } from "../store";
 import { bodySrollActions } from "../store/slices/bodyScroll";
@@ -14,14 +14,18 @@ export function useBodyScroll(){
         }
         
         document.body.style.overflowY = "scroll";
-    }, [bodyScroll]);
+    }, [ bodyScroll ]);
+
+    const showScroll = useCallback(()=>{
+        dispath(bodySrollActions.setHidden(false));
+    }, [dispath]);
+
+    const hiddenScroll = useCallback(()=>{
+        dispath(bodySrollActions.setHidden(true));
+    }, [dispath])
 
     return {
-        showScroll(){
-            dispath(bodySrollActions.setHidden(false));
-        },
-        hiddenScroll(){
-            dispath(bodySrollActions.setHidden(true));
-        }
+        showScroll,
+        hiddenScroll
     }
 }

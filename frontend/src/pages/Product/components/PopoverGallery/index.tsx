@@ -32,11 +32,11 @@ export default function PopoverGallery({ collection, main }:Props) {
                 showScroll();
             }
         });
-    }, [])
+    }, [ events, hiddenScroll, dispatch, showScroll ])
 
     useEffect(()=>{
         if(show) playAnime("normal");
-    }, [show])
+    }, [show, playAnime])
 
     return (
         <div className="pop-gallery__container bg-white position-fixed top-0 start-0"
@@ -56,13 +56,15 @@ export default function PopoverGallery({ collection, main }:Props) {
                     <div className="pop-gallery w-100 d-flex align-items-center flex-column gap-3">
                         <div className="pop-gallery__item rounded-3"
                                 style={{background: "#f8f8f8"}}>
-                            <img src={"/assets/img/"+main}/>
+                            <img src={"/assets/img/"+main}
+                                alt="main product"/>
                         </div>
                         {collection.map((i)=>(
                             <div key={i}
                                 className="pop-gallery__item rounded-3"
                                 style={{background: "#f8f8f8"}}>
-                                <img src={"/assets/img/"+i}/>
+                                <img src={"/assets/img/"+i}
+                                    alt="product"/>
                             </div>
                         ))}
                     </div>

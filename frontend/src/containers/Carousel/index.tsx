@@ -68,7 +68,7 @@ export default function Carousel({CarouselControl, info, cards, swipeControl}:Pr
             },
             slideX: 0
         });
-    }, [info]);
+    }, [info, cards.length]);
 
     function slideToLeft(){
         let posx = posxToLeft(info, completedInfo.slideX);
@@ -95,7 +95,7 @@ export default function Carousel({CarouselControl, info, cards, swipeControl}:Pr
         swipe.current = {initialX, initialY, blockSwipe: false};
     }
     function touchMove(e:React.TouchEvent<HTMLDivElement>){
-        let {initialX, initialY, blockSwipe} = swipe.current;
+        let {initialX, blockSwipe} = swipe.current;
         if(blockSwipe) return;
          
         var currentX = e.touches[0].clientX;

@@ -1,5 +1,5 @@
 import "./style.scss";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { ICarouselControl } from "../..";
 import { isEnableRight } from "../../../../utils/carousel";
 import CarouselContext from "../../../../contexts/carousel";
@@ -15,12 +15,12 @@ export default function AutomaticControl({info, slideToLeft, slideToRight, setSl
     let [ timeoutId, setTimeoutId ] = useState(0);
     let currentId = info.slideX / info.propsInfo.cardFullWidth;
 
-    function moveToRight(){
+    const moveToRight = useCallback(()=>{
         if(!isEnableRight(info.propsInfo, info.slideX, info.slideInfo.slideWidth) && setSlideX) 
             return setSlideX(0);
-    
+
         slideToRight();
-    }
+    }, [slideToRight, info, setSlideX])
 
     useEffect(()=>{
         let id = setTimeout(()=>{
@@ -34,7 +34,7 @@ export default function AutomaticControl({info, slideToLeft, slideToRight, setSl
         return ()=>{
             clearTimeout(timeoutId);
         }
-    }, [info])
+    }, [ info, delay, data, direction, moveToRight, slideToLeft, timeoutId ])
 
     return <>
         <div className="carousel-control__auto d-flex gap-1 mt-2" style={{"--timing":delay+"ms"} as React.CSSProperties}>

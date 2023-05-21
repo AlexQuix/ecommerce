@@ -1,5 +1,5 @@
 import "./style.scss";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { IState } from "../../store";
 
@@ -13,14 +13,20 @@ type Props = {
 }
 
 export default function Alert({ onClose, delayToClose}:Props){
-    let { show, message, type } = useSelector((state:IState) => state.alert);
-    
+    const _onClose = useRef(onClose);
+    const { show, message, type } = useSelector((state:IState) => state.alert);
+
+    const handleClose = useCallback(()=>{
+        let id = setTimeout(()=> _onClose.current(), delayToClose)
+        return id as unknown as number;
+    }, [ delayToClose ])
+
     useEffect(()=>{
-        let id = setTimeout(()=> onClose(), delayToClose);
+        let id = 0;
+        if( show ) id = handleClose();
 
         return ()=> clearTimeout(id);
-    }, []);
-
+    }, [ show, handleClose ]);
 
     if(show){
         return (

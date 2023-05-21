@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Color, IResult } from "../types/models";
 import { ICategory } from "./category";
 
@@ -84,4 +85,5 @@ class ProductService{
     }
 }
 
-export default new ProductService();
+const productService = new ProductService();
+export default productService;

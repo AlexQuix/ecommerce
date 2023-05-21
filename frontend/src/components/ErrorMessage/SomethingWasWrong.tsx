@@ -5,7 +5,7 @@ export default function SomethingWasWrong(){
                 style={{
                     maxHeight: "90px",
                     objectFit: "contain"
-                }}/>
+                }} alt="server error"/>
             <p className="fs-5 text-dark-600 fw-400 text-center">
                 Something went wrong! It's not your fault.
                 <br/>

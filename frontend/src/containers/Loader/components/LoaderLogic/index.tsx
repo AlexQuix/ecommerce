@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { LoaderHook, DataLoader, useLoader } from "../../hooks/useLoader";
 
 export type ErrorComponent = (props:{reason:any})=>JSX.Element;
@@ -20,16 +20,14 @@ export default function LoaderLogic<T>({dataLoader, children, LoadingIndicator, 
     let { loading, error, result } = useLoader<T | null>(dataLoader, exec);
 
     // Function to update the exec state to true and thus reload the information
-    function refresh(){
-        setExec(true);
-    }
+    const refresh = useCallback(()=>setExec(true), []);
 
     useEffect(()=>{
         if(initialRender){
             setExec(true);
             setInitialRender(false);
         }
-    }, [ ])
+    }, [ initialRender ])
 
     useEffect(()=>{
         if(!loading && exec){

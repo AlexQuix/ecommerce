@@ -53,7 +53,7 @@ export default function Signin(){
                 navigate("/login");
             }
         })
-    }, [])
+    }, [playAnime, events, navigate])
 
     async function handleSumbit(user:ISignUpClient){
         try{

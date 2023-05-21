@@ -9,14 +9,14 @@ export interface ILoaderState<T> {
   setResult: React.Dispatch<React.SetStateAction<T>>;
 }
 
-export interface ILoaderProviderProps<T> {
+export interface ILoaderProviderProps {
   children: JSX.Element | React.ReactNode
 }
 
 
 export const LoaderContext = createContext({} as ILoaderState<any>);
 
-export function LoaderProvider<T>({ children }: ILoaderProviderProps<T>) {
+export function LoaderProvider<T>({ children }: ILoaderProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
   const [result, setResult] = useState<T>();

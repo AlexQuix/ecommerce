@@ -45,11 +45,11 @@ export default function Filter(){
                 },
             })
         }        
-    }, [filterRef, btnCloseRef])
+    }, [filterRef, btnCloseRef, addAnimation, device, dispatch, events, showScroll])
 
     useEffect(()=>{
         if(visibility) playAnime("normal");
-    }, [visibility])
+    }, [ visibility, playAnime ])
 
     function handleChanges(v:IFilterForm){
         dispatch(filterActions.setQuery(v));

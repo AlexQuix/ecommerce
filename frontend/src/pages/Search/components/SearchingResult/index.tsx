@@ -19,7 +19,7 @@ export default function SearchResult({products, user, refresh}:Props){
     useEffect(()=>{
         if(refreshData) 
             refresh();
-    }, [ refreshData ]);
+    }, [ refreshData, refresh]);
 
     if(products){
         return (<>

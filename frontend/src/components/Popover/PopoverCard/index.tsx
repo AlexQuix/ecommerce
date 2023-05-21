@@ -86,7 +86,9 @@ export default function PopoverCard(){
                                                                     height: "180px",
                                                                     objectFit: "contain"
                                                                 }}>
-                                                                <img className="w-100" src={"/assets/img/"+g} />
+                                                                <img className="w-100" 
+                                                                    src={"/assets/img/"+g} 
+                                                                    alt="product"/>
                                                             </div>
                                                         ))}
                                                         CSSCardGap="--carousel-popover-gallery-gap"

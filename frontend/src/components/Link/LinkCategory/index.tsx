@@ -36,7 +36,8 @@ export default function LinkCategory({category, imgSrc, className, style}:IProps
 
             {imgSrc && (
                 <div className="wrapper-img w-100 h-100 position-absolute end-0 bottom-0 flex-grow-1 d-flex justify-content-center align-items-center">
-                    <img src={imgSrc}/>
+                    <img src={imgSrc}
+                        alt="icon"/>
                 </div>
             )}
         </button>

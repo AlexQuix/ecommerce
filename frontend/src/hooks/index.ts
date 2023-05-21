@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 
 export type Device = "small-mobile" | "mobile" | "tablet" | "laptop" | "desktop" | "extra-desktop";
 
@@ -55,12 +55,16 @@ export function currentDevice(){
 
 
 export function useResize(cb:()=>void){
+    const cbRef = useRef(cb);
+
     useEffect(()=>{
+        let cb = cbRef.current;
         cb();
+        
         window.addEventListener("resize", cb);
 
         return ()=>{
             window.removeEventListener("resize", cb);
         }
-    }, [])
+    }, [cbRef])
 }

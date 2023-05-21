@@ -18,10 +18,9 @@ export default function Skeleton({children, hideScroll}:Props){
     useEffect(()=>{
         if( hideScroll ){
             hiddenScroll();
-
             return ()=> showScroll();
         }
-    }, [ hideScroll ])
+    }, [ hideScroll, hiddenScroll, showScroll ])
 
     return (
         <div className="w-100 h-100 position-relative">

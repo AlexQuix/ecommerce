@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDevice } from "../../../hooks";
 
@@ -30,28 +30,28 @@ export default function LinkDrawLine({to, title, SVGDrawLine, animeConfig, class
     let validDevice = (device === "laptop" || device === "desktop" || device === "extra-desktop");
     let drawLineColor = (pathname === to)? "var(--bs-prim-400)" : "var(--bs-dark-400)";
 
+    let handleClick = useCallback(()=>{
+        setPlay(true);
+        
+        if(!animeConfig.ignoreDuration)
+            return setTimeout(()=>{
+                    setPlay(false);
+                    navigate(to);
+                }, animeConfig.duration);
+
+        navigate(to);
+        setPlay(false);
+    }, [animeConfig, to, navigate])
+
+
     useEffect(()=>{
         if(execute){
             handleClick();
         }
-    }, [execute])
-
-    function handleClick(){
-        setPlay(true);
-
-        if(!animeConfig.ignoreDuration){
-            setTimeout(()=>{
-                setPlay(false);
-                navigate(to);
-            }, animeConfig.duration);
-        }else{
-            navigate(to);
-            setPlay(false);
-        }
-    }
+    }, [execute, handleClick])
 
     return (
-        <a className={`nav-link d-flex align-items-center gap-2 px-2 px-sm-3 py-2 neu-drop-dark-1 rounded-3${className && " " + className}`}
+        <div className={`nav-link d-flex align-items-center gap-2 px-2 px-sm-3 py-2 neu-drop-dark-1 rounded-3${className && " " + className}`}
             onClick={handleClick}>
             <div className="nav-link__icon position-relative">
                 {<SVGDrawLine color={drawLineColor}
@@ -61,7 +61,7 @@ export default function LinkDrawLine({to, title, SVGDrawLine, animeConfig, class
             { validDevice && 
                 <span className={`small fw-400 ${(pathname === to)? "text-prim-400" : "var(--bs-dark-100)"}`}>{title}</span>
             }
-        </a>
+        </div>
     )
 }
 
