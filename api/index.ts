@@ -6,6 +6,6 @@ import {connectToMongodb} from "./core/db";
 connectToMongodb();
 
 // Server connected
-app.listen(4000, ()=>{
-    console.log("Server on live");
+app.listen(process.env.PORT || 4000, ()=>{
+    console.log("Server on live " + process.env.PORT);
 });

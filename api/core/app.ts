@@ -8,16 +8,13 @@ import {ErrorController} from "../controllers";
 
 const app:Express = express();
 
-if(process.env.MODE === "dev"){
-    app.use(morgan("dev"));
-}
-
-app.use(helmet());
-app.use(helmet.hidePoweredBy());
-app.use(cors({
-    origin: process.env.FRONTEND_ORIGIN,
-    optionsSuccessStatus: 200
-}));
+app.use(morgan("dev"));
+// app.use(helmet());
+// app.use(helmet.hidePoweredBy());
+// app.use(cors({
+//     origin: process.env.FRONTEND_ORIGIN,
+//     optionsSuccessStatus: 200
+// }));
 app.use(express.static(path.join(process.cwd(), "public")))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
