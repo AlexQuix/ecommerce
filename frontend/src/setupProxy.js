@@ -4,7 +4,7 @@ module.exports = function(app){
     app.use(
         "/assets",
         createProxyMiddleware({
-            target: process.env.REACT_APP_ORIGIN_ASSETS || "http://localhost:4000",
+            target: process.env.ORIGIN_ASSETS || "http://localhost:4000",
             changeOrigin: true
         })
     );
@@ -12,7 +12,7 @@ module.exports = function(app){
     app.use(
         "/api",
         createProxyMiddleware({
-            target: process.env.REACT_APP_ORIGIN_API || "http://localhost:4000",
+            target: process.env.ORIGIN_API || "http://localhost:4000",
             changeOrigin: true
         })
     );
